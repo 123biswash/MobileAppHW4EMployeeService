@@ -18,8 +18,10 @@ under the License.
 */
 
 // Note, these will be updated automatically at build time
-var CACHE_VERSION = '1509644849921';
+var CACHE_VERSION = '1510007721976';
 var CACHE_LIST = [
+    "/assets/.DS_Store",
+    "/assets/css/.DS_Store",
     "/assets/css/images/ic_action_add.png",
     "/assets/css/images/ic_action_arrow_left.png",
     "/assets/css/images/ic_action_book.png",

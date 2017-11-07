@@ -21,11 +21,21 @@ var EmployeeService = function() {
         return deferred.promise();
     }
 
-    this.findByName = function(searchKey) {
+    this.findByFirstName = function(searchKey) {
         var deferred = $.Deferred();
         var results = employees.filter(function(element) {
-            var fullName = element.firstName + " " + element.lastName;
-            return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+            var firstName = element.firstName;
+            return firstName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+        });
+        deferred.resolve(results);
+        return deferred.promise();
+    }
+
+    this.findByLastName = function(searchKey) {
+        var deferred = $.Deferred();
+        var results = employees.filter(function(element) {
+            var lastName = element.lastName;
+            return lastName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
         });
         deferred.resolve(results);
         return deferred.promise();

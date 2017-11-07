@@ -8,13 +8,12 @@
     });
 
     /* --------------------------------- Event Registration -------------------------------- */
-    $('.search-key1').on('keyup', findByName);
-    $('.search-key2').on('keyup', finByName)
+    $('.search-key1').on('keyup', findByFirstName);
+    $('.search-key2').on('keyup', findByLastName);
     $('.help-btn').on('click', function() {
         alert("Employee Directory v3.4");
     });
-
-    
+    /*
     document.addEventListener('deviceready',
         function () {
         // Override default HTML alert
@@ -30,42 +29,40 @@
         };
         }
         }, false);
-    
+    */
     /* ---------------------------------- Local Functions ---------------------------------- */
-    function findByName() {
-        service.findByName($('.search-key1').val()).done(function (employees) {
-            //var check=$('.search-key').val();
-            var l = employees.length;
-            var e;
-            //if (check.length < 3){
-                //$('.employee-list').empty();
-            //}else{
+    function findByFirstName() {
+        var _firstName = $.trim($('.search-key1').val());
+        if (_firstName.length >= 2 || _firstName.length >= 2) {
+            service.findByFirstName($.trim($('.search-key1').val())).done(function (employees) {
+                var l = employees.length;
+                var e;
                 $('.employee-list').empty();
                 for (var i = 0; i < l; i++) {
-                e = employees[i];
-                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' </a></li>');
+                    e = employees[i];
+                    $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
                 }
-
-            //}
-           
             });
-        
-        service.findByName($('.search-key2').val()).done(function (employees) {
-            //var check=$('.search-key').val();
-            var l = employees.length;
-            var e;
-            //if (check.length < 3){
-                //$('.employee-list').empty();
-            //}else{
+        } else {
+            $('.employee-list').empty();
+        }
+    }
+
+    function findByLastName() {
+        var _lastName = $.trim($('.search-key2').val());
+        if (_lastName.length >= 2 || _lastName.length >= 2) {
+            service.findByLastName($.trim($('.search-key2').val())).done(function (employees) {
+                var l = employees.length;
+                var e;
                 $('.employee-list').empty();
                 for (var i = 0; i < l; i++) {
-                e = employees[i];
-                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.lastName + '</a></li>');
+                    e = employees[i];
+                    $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
                 }
-
-            //}
-           
             });
+        } else {
+             $('.employee-list').empty();
+        }
         
     }
 
